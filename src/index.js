@@ -5,9 +5,10 @@ import "./index.css"
 
 
 function QuoteGen() {
-  const [quote, Genquote] = useState({text: "I never see what has been done; I only see what remains to be done.",
-  author: "Marie Curie"});
+  const [quote, Genquote] = useState({text: "Silence is the true friend that never betrays.",
+  author: "Confucius"});
   const [quotes, Genquotes] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 function generate(){
     
     let rndmkey = [Math.floor(Math.random() * quotes.length)];
@@ -18,14 +19,25 @@ function generate(){
 
   useEffect(()=>{axios.get("https://type.fit/api/quotes")
       .then(function (response) {
-       Genquotes(response.data);
-        console.log(response.data);
+        if(response.data.length > 0){
+          setIsLoading(false)
+          Genquotes(response.data);
+        }
+      
+        
        
         
        });
     
   },[])
-  return (
+  return isLoading?
+  <div class="loadingio-spinner-ripple-4pnogkvp7g3"><div class="ldio-ux3rtz5zf9">
+  <div></div><div></div>
+  </div></div>
+         :
+  
+  
+  (
     <>
     <h1>Quote Generatore </h1>
     <div className="quote">
@@ -42,3 +54,4 @@ function generate(){
     
 
 createRoot(document.getElementById("root")).render(<QuoteGen />);
+
