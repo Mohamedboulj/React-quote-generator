@@ -1,44 +1,41 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
+import axios from "axios";
 
-function Addition() {
-  const [Val1, setVal1] = useState(0);
-  const [Val2, setVal2] = useState(0);
-  const [Sum, setSum] = useState();
 
+
+
+function QuoteGen() {
+    const [{text,author},Genquote]=useState();
+    useEffect(
+        axios({
+            method: 'get',
+            url: 'https://type.fit/api/quotes',
+            responseType: 'stream'
+          })
+            .then(function (response) {
+                var keys = Object.keys(response.data);
+                rndmkey = keys[Math.floor(Math.random() * keys.length)];
+               
+                    response.data[rndmkey].text;
+                    response.data[rndmkey].author;
+                
+
+            }),[]
+            
+    )
   return (
-    <div>
-      <input
-        type="text"
-        onInput={(e) => {
-          setVal1(Number(e.target.value));
-        }}
-      />
-      &nbsp; 
-      +
-      &nbsp; 
-      <input
-        type="text"
-        onInput={(e) => {
-          setVal2(Number(e.target.value));
-        }}
-      />
-      <button
-        onClick={() => {
-          setSum(Val1 + Val2);
-        }}
-      >
-        Calculer!
+    <div className="quote">
+     
+      <blockquote>{quote.text}</blockquote>
+      <span>{quote.author}</span>
+
+      <button onClick={()=>{Genquote( response.data[rndmkey].text, response.data[rndmkey].author)}}>
+        <img src="outline_sync_black_24dp.png" alt="" />
       </button>
-      &nbsp; 
-
-      =
-      &nbsp; 
-
-      <label>{Sum}</label>
-      
     </div>
   );
 }
 
-createRoot(document.getElementById("root")).render(<Addition />);
+createRoot(document.getElementById("root")).render(<QuoteGen />);
+
