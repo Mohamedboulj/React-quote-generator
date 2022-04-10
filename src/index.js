@@ -3,46 +3,57 @@ import { createRoot } from "react-dom/client";
 import axios from "axios";
 import "./index.css";
 
-function QuoteGen() {
-  const [quote, Genquote] = useState({
-    text: "Silence is the true friend that never betrays.",
-    author: "Confucius",
-  });
-  const [quotes, Genquotes] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  function generate() {
-    let rndmkey = [Math.floor(Math.random() * quotes.length)];
+function Weather() {
+  // const [allData, SetWeatherData] = useState(null)
+  const [weather, updateweather] = useState({})
+  const [city, Setcity] = useState("Rabat")
+  const [cond, Setcondition] = useState({})
 
-    Genquote(quotes[rndmkey]);
-  }
+//  Setcity(allData.location)
 
-  useEffect(() => {
-    axios.get("https://type.fit/api/quotes").then(function (response) {
-      if (response.data.length > 0) {
-        setIsLoading(false);
-        Genquotes(response.data);
-      }
-    });
+  // const loc = e.target.elements.loc.value;${Casablanca}
+  
+
+  useEffect(() => {axios.get("https://weatherapi-com.p.rapidapi.com/current.json?q=casablanca", {
+        headers: {
+          "x-rapidapi-host": "weatherapi-com.p.rapidapi.com",
+          "x-rapidapi-key":
+            "8c7fa2d5a9mshed2230395c12120p1b7af3jsn8607806f21e0",
+        },
+      })
+      .then(function (response) {
+        // SetWeatherData(response.data);
+        Setcity(response.data.location.name+'/'+response.data.location.country)
+        updateweather(response.data.current)
+        Setcondition(response.data.current.condition)
+        console.log(response.data);
+        console.log(response.data.current);
+        console.log(response.data.location);
+       
+      }).catch(function (error) {
+        // handle error
+        console.log(error);
+      });
   }, []);
-  return isLoading ? (
-    <div class="loadingio-spinner-ripple-4pnogkvp7g3">
-      <div class="ldio-ux3rtz5zf9">
-        <div></div>
-        <div></div>
-      </div>
+  // Setcity(allData.location)
+
+
+  return (
+    <div className="parent">
+      <img src="../icons/ultraviolet.png" alt="" />
+      <div className="div1"> Weather App</div>
+      <div className="div2"><img src={"https:"+`${cond.icon}`} alt="" /></div>
+      <div className="div3">{cond.text}</div>
+      <div className="div4">{Math.trunc(weather.feelslike_c)}°</div>
+      <div className="div5">{city.toUpperCase()}</div>
+      <div className="div6"><span>Precepitation</span>  {weather.precip_mm}&nbsp;mm</div>
+      <div className="div7"><span>UV</span>{weather.uv}</div>
+      <div className="div8"> <span>Humidity</span>{weather.humidity}% </div>
     </div>
-  ) : (
-    <>
-      <h1>Quote Generatore </h1>
-      <div className="quote">
-        <blockquote>{quote.text}</blockquote>
-        <span>{quote.author}</span>
-        <button class="button-30" role="button" onClick={generate}>
-          Generate
-        </button>
-      </div>
-    </>
-  );
+  )
 }
 
-createRoot(document.getElementById("root")).render(<QuoteGen />);
+  createRoot(document.getElementById("root")).render(<Weather/>);
+
+
+//weather = {{condition:data.current.condition.icon},{condition:data.current.condition.text},{temp:data.current.feelslike_c},{location:data.location.name+"/"+data.location.name}}
