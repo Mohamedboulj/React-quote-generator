@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/React-quote-generator/static/css/main.7f2b43fc.css",
-    "main.js": "/React-quote-generator/static/js/main.7df409d4.js",
-    "index.html": "/React-quote-generator/index.html",
-    "main.7f2b43fc.css.map": "/React-quote-generator/static/css/main.7f2b43fc.css.map",
-    "main.7df409d4.js.map": "/React-quote-generator/static/js/main.7df409d4.js.map"
+    "main.css": "/Weather-application/static/css/main.7f2b43fc.css",
+    "main.js": "/Weather-application/static/js/main.7df409d4.js",
+    "index.html": "/Weather-application/index.html",
+    "main.7f2b43fc.css.map": "/Weather-application/static/css/main.7f2b43fc.css.map",
+    "main.7df409d4.js.map": "/Weather-application/static/js/main.7df409d4.js.map"
   },
   "entrypoints": [
     "static/css/main.7f2b43fc.css",
