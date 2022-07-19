@@ -104,3 +104,18 @@ body {
 img {
   width: 50%;
 }
+
+@media screen and (max-width: 600px) {
+  body{
+    margin: 4px;
+  }
+  .parent{
+    width:fit-content;
+  }
+  .div5{
+    font-size: 15px;
+  }
+  .div6,.div7,.div8{
+    font-size: 17px;
+  }
+}

@@ -26,9 +26,7 @@ function Weather() {
         Setcity(response.data.location.name+'/'+response.data.location.country)
         updateweather(response.data.current)
         Setcondition(response.data.current.condition)
-        console.log(response.data);
-        console.log(response.data.current);
-        console.log(response.data.location);
+        
        
       }).catch(function (error) {
         // handle error
@@ -41,7 +39,7 @@ function Weather() {
   return (
     <div className="parent">
       <img src="../icons/ultraviolet.png" alt="" />
-      <div className="div1"> Weather App</div>
+      <div className="div1"> The weather now</div>
       <div className="div2"><img src={"https:"+`${cond.icon}`} alt="" /></div>
       <div className="div3">{cond.text}</div>
       <div className="div4">{Math.trunc(weather.feelslike_c)}°</div>
