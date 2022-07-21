@@ -17,6 +17,7 @@ function Weather() {
 
     console.log(location)
     setCity(query)
+    setQuery('')
     console.log(query);
     getWeatherData(city)
   
@@ -32,9 +33,9 @@ function Weather() {
   .then(function (response) {
     
     updateweather(response.data.current)
-    console.log(response.data)
+    // console.log(response.data)
     Setcondition(response.data.current.condition)
-    console.log(response.data.location.name)
+    // console.log(response.data.location.name)
     setLocation(response.data.location.name)
     SetLastUpdat(response.data.current.last_updated)
   })
@@ -56,11 +57,9 @@ function Weather() {
 
   return (
     <>
-    <form  onSubmit={(e)=>{handleSubmit(e)}}>
-      <div  className="input-group d-flex justify-content-center my-4" >
-        <input className="div-control-md "   onChange={(e)=>{setQuery(e.target.value)}}  type="text" placeholder="Search city.." name="query"  />
+    <form className="input-group d-flex justify-content-center my-4" onSubmit={(e)=>{handleSubmit(e)}}>    
+        <input className="form-control-md input " value={query}  onChange={(e)=>{setQuery(e.target.value)}}  type="text" placeholder="search city . . ." name="query"  />
         <input type="submit" className="btn btn-secondary" value='Search' />
-      </div>
     </form>
       <div className="parent">
         <img src="../icons/ultraviolet.png" alt="" />
@@ -74,7 +73,7 @@ function Weather() {
         <div className="div8"> <span>Humidity</span>{weather.humidity}% </div>
       </div>
       <div className="my-3 ">
-        <h4 className="m-auto last_update">{lastUpdat}</h4>
+        <h4 className="m-auto last_update">Last updated at  {lastUpdat}</h4>
       </div>
     </>
     

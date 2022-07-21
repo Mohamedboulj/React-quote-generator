@@ -111,18 +111,38 @@ img {
     width: 50%;
     text-align: center;
 }
+.input,.btn{
+  padding: .7rem 1.5rem;
+  font-size: 1.2rem;
+  border-radius: 25px;
+  border: 1px solid rgba(255,255,255, 0.8);
+  background: rgba(252, 52, 52, 0.1);
+  color: #f8f8f8;
+  outline: none;
+  
+  
+}
 
-@media screen and (max-width: 600px) {
+::placeholder {
+  color: #f8f8f8;
+}
+@media screen and (max-width: 414px) {
   body{
     margin: 4px;
   }
   .parent{
     width:fit-content;
   }
+  .div1{
+    font-size: 2em;
+  }
   .div5{
     font-size: 15px;
   }
   .div6,.div7,.div8{
     font-size: 17px;
+  }
+  .input{
+    width: 45%;    
   }
 }
