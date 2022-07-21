@@ -104,6 +104,13 @@ body {
 img {
   width: 50%;
 }
+.last_update{
+    
+    font-size: 15px;
+    color: white;
+    width: 50%;
+    text-align: center;
+}
 
 @media screen and (max-width: 600px) {
   body{
