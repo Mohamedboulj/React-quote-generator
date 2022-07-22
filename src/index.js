@@ -19,7 +19,7 @@ function Weather() {
     setCity(query)
     setQuery('')
     console.log(query);
-    getWeatherData(city)
+    getWeatherData(query)
   
   }
 
@@ -50,7 +50,7 @@ function Weather() {
       
     }
     
-    useEffect(() => { getData() },[city]);
+    useEffect(() => { getData() });
      
    
 
@@ -64,7 +64,7 @@ function Weather() {
       <div className="parent">
         <img src="../icons/ultraviolet.png" alt="" />
         <div className="div1"> The weather now</div>
-        <div className="div2"><img src={"https:"+`${cond.icon}`} alt="" /></div>
+        <div className="div2"><img src={`https:${cond.icon}`} alt="" /></div>
         <div className="div3">{cond.text}</div>
         <div className="div4">{Math.trunc(weather.feelslike_c)}°</div>
         <div className="div5">{location}</div>
